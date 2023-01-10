@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{% for landfill in landfills %}
+		<h1>{{landfill.username}}</h1>
+	{% endfor %}
+{% endblock %}
