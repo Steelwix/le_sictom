@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>
+					FREQUENTATION DU JOUR
+				</h1>
+			</div>
+			<div class="row">
+				{% if frequentation %}
+					<div class="col-12">
+						<p>Compte du matin :
+							{{frequentation.morningCount}}</p>
+						<p>Compte de l'après midi :
+							{{frequentation.afternoonCount}}</p>
+					</div>
+				{% else %}
+					<div class="col-12">
+						<p>Aucune visite comptabilisée pour aujourd'hui</p>
+					</div>
+				{% endif %}
+
+			</div>
+		</div>
+	{% endblock %}

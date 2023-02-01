@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Frequentation;
 use App\Repository\ExtractionRepository;
+use App\Repository\FrequentationRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,5 +25,20 @@ class LandfillController extends AbstractController
             }
         }
         return $this->render('landfill/extraction.html.twig', ['extractions' => $extractionOfTheDay]);
+    }
+    #[Route('/frequentation', name: 'app_frequentation')]
+    public function frequentation(FrequentationRepository $frequentationRepository): Response
+    {
+        $allFrequentations = $frequentationRepository->findByLandfill($this->getUser());
+        $today = new DateTime();
+        $today->format('d-m-Y');
+        foreach ($allFrequentations as $frequentation) {
+            if ($today == $frequentation->getDatetime()->format('d-m-Y')) {
+                $todayFrequentation = $frequentation;
+                return $this->render('landfill/frequentation.html.twig', ['frequentation' => $todayFrequentation]);
+            } else {
+            }
+        }
+        return $this->render('landfill/frequentation.html.twig', ['frequentation' => null]);
     }
 }
