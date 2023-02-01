@@ -29,7 +29,7 @@ class Extraction
     private ?int $number = null;
 
     #[ORM\Column]
-    private ?int $size = null;
+    private ?string $size = null;
 
     #[ORM\ManyToOne(inversedBy: 'extractions')]
     #[ORM\JoinColumn(nullable: false)]

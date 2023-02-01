@@ -1,6 +1,43 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	{% for landfill in landfills %}
-		<h1>{{landfill.username}}</h1>
-	{% endfor %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>Le Sictom</h1>
+			</div>
+
+			{% if app.user.isLandfill == true %}
+
+				<div class="card bg-dark text-bg-dark col-12">
+					<div class="card-title text-center">{{app.user.username}}</div>
+					<a type="button" class="btn btn-dark" href="">
+						<i class="bi bi-hammer">
+							Extraction des déchets</i>
+					</a>
+					<a type="button" class="btn btn-dark" href="">
+						<i class="bi bi-hammer">
+							Fréquentation de la déchetterie</i>
+					</a>
+				</div>
+			{% endif %}
+			{% if is_granted('ISADMIN', app.user) %}
+				<div class="card bg-dark text-bg-dark col-12">
+					<div class="card-title text-center">Controle</div>
+					<a type="button" class="btn btn-dark" href="">
+						<i class="bi bi-hammer">
+							Controle des extractions</i>
+					</a>
+					<a type="button" class="btn btn-dark" href="">
+						<i class="bi bi-hammer">
+							Bilan des fréquentations</i>
+					</a>
+					<a type="button" class="btn btn-dark" href="">
+						<i class="bi bi-hammer">
+							Matrice</i>
+					</a>
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
 {% endblock %}

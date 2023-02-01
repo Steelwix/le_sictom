@@ -30,7 +30,8 @@
 
 	</head>
 
-	<body class="bg-dark text-light"> {% block body %}{% endblock %}
-		</body>
-	</html>
-	{% block javascripts %}{% endblock %}
+	<body class="bg-dark text-light">{% include "_partials/_nav.html.twig" %}
+		{% block body %}{% endblock %}
+	</body>
+</html>
+{% block javascripts %}{% endblock %}
