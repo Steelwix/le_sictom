@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>
+					EXTRACTIONS DU JOUR
+				</h1>
+			</div>
+			<div class="row">
+				{% for extraction in extractions %}
+
+					<div class="card bg-danger col-2 mh-500 d-flex align-items-stretch">
+
+						<div class="card bg-dark col-2 mh-500 d-flex align-items-stretch">
+							<div class="card-title text-center">
+								<p>
+									<strong>{{extraction.datetime}}</strong>
+								</p>
+								<p>{{extraction.number}}
+									{{extraction.size}}
+									de
+									{{extraction.material.name}}</p>
+								<p>par
+									{{extraction.carrier.name}}
+									en direction de
+									{{extraction.destination}}</p>
+
+								<div class="card-content text-center"></div>
+								<a type="button" class="btn btn-dark" href="{{path('app_modify_user', {id: user.id}) }}">
+									<i class="bi bi-pen-fill">
+										Modifier</i>
+								</a>
+							</div>
+
+						</div>
+
+
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
