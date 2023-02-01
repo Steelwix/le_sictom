@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>
+					FREQUENTATION DU JOUR
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<a href="{{ path('app_create_carrier') }}">Créer un transporteur</a>
+					<a href="{{ path('app_create_number_plate') }}">Créer une plaque d'immatriculation</a>
+					<a href="{{ path('app_create_material') }}">Créer un matériau</a>
+				</div>
+
+			</div>
+		</div>
+	{% endblock %}
