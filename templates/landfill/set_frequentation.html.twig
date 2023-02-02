@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fréquentation du jour
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>Fréquentation du jour</h1>
+			</div>
+			<div class="card bg-dark col-10 col-md-9 col-lg-6 mx-auto text-center">
+				{{ form_start(frequentationForm)}}<br>
+				{{ form_row(frequentationForm.morningCount)}}<br>
+				{{ form_row(frequentationForm.afternoonCount)}}<br>
+				<button type="submit" class="btn btn-primary btn-lg">Créer</button>
+				{{ form_end(frequentationForm)}}
+			</div>
+		</div>
+	</section>
+{% endblock %}
