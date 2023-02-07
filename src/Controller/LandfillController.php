@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Extraction;
 use App\Entity\Frequentation;
+use App\Form\ExtractionFormType;
 use App\Form\FrequentationFormType;
 use App\Repository\ExtractionRepository;
 use App\Repository\FrequentationRepository;
@@ -57,5 +59,17 @@ class LandfillController extends AbstractController
             return $this->redirectToRoute('app_frequentation');
         }
         return $this->render('landfill/set_frequentation.html.twig', ['frequentationForm' => $form->createView()]);
+    }
+    #[Route('/set/extraction', name: 'app_set_extraction')]
+    public function setExtraction(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $extraction = new Extraction;
+        $form = $this->createForm(ExtractionFormType::class, $extraction);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() and $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_extraction');
+        }
+        return $this->render('landfill/set_extraction.html.twig', ['extractionForm' => $form->createView()]);
     }
 }
