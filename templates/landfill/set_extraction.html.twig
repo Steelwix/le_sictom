@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Extraction
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>Extraction</h1>
+			</div>
+			<div class="card bg-dark col-10 col-md-9 col-lg-6 mx-auto text-center">
+				{{ form_start(extractionForm)}}<br>
+				{{ form_row(extractionForm.number)}}<br>
+				{{ form_row(extractionForm.size)}}<br>
+				{{ form_row(extractionForm.destination)}}<br>
+				{{ form_row(extractionForm.isEmergency)}}<br>
+				{{ form_row(extractionForm.material)}}<br>
+				{{ form_row(extractionForm.carrier)}}<br>
+				{{ form_row(extractionForm.numberPlate)}}<br>
+				<button type="submit" class="btn btn-primary btn-lg">Créer</button>
+				{{ form_end(extractionForm)}}
+			</div>
+		</div>
+	</section>
+{% endblock %}
