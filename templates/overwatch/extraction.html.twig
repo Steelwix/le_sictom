@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>
+					FREQUENTATIONS
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-12"></div>
+				{% for date in dates %}
+					{{date|keys|first}}
+					{% for key in date %}
+						<p>{{key.landfill.username}}</p>
+						<p>Matin</p>
+						<p>{{key.morningCount}}</p>
+						<p>Après midi</p>
+						<p>{{key.afterNoonCount}}</p>
+					{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
