@@ -38,15 +38,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $isLandfill = null;
 
-    #[ORM\OneToOne(mappedBy: 'landfill', cascade: ['persist', 'remove'])]
-    private ?Frequentation $frequentation = null;
-
     #[ORM\OneToMany(mappedBy: 'landfill', targetEntity: Extraction::class)]
     private Collection $extractions;
+
+    #[ORM\OneToMany(mappedBy: 'landfill', targetEntity: Frequentation::class)]
+    private Collection $frequentations;
 
     public function __construct()
     {
         $this->extractions = new ArrayCollection();
+        $this->frequentations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,23 +144,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFrequentation(): ?Frequentation
-    {
-        return $this->frequentation;
-    }
-
-    public function setFrequentation(Frequentation $frequentation): self
-    {
-        // set the owning side of the relation if necessary
-        if ($frequentation->getLandfill() !== $this) {
-            $frequentation->setLandfill($this);
-        }
-
-        $this->frequentation = $frequentation;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Extraction>
      */
@@ -184,6 +168,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($extraction->getLandfill() === $this) {
                 $extraction->setLandfill(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Frequentation>
+     */
+    public function getFrequentations(): Collection
+    {
+        return $this->frequentations;
+    }
+
+    public function addFrequentation(Frequentation $frequentation): self
+    {
+        if (!$this->frequentations->contains($frequentation)) {
+            $this->frequentations->add($frequentation);
+            $frequentation->setLandfill($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFrequentation(Frequentation $frequentation): self
+    {
+        if ($this->frequentations->removeElement($frequentation)) {
+            // set the owning side to null (unless already changed)
+            if ($frequentation->getLandfill() === $this) {
+                $frequentation->setLandfill(null);
             }
         }
 
