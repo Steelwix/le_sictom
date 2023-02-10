@@ -14,9 +14,6 @@ class Frequentation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'frequentation', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $landfill = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $day = null;
@@ -27,21 +24,12 @@ class Frequentation
     #[ORM\Column]
     private ?int $afternoonCount = null;
 
+    #[ORM\ManyToOne(inversedBy: 'frequentations')]
+    private ?User $landfill = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getLandfill(): ?User
-    {
-        return $this->landfill;
-    }
-
-    public function setLandfill(User $landfill): self
-    {
-        $this->landfill = $landfill;
-
-        return $this;
     }
 
     public function getDay(): ?\DateTimeInterface
@@ -76,6 +64,18 @@ class Frequentation
     public function setAfternoonCount(int $afternoonCount): self
     {
         $this->afternoonCount = $afternoonCount;
+
+        return $this;
+    }
+
+    public function getLandfill(): ?User
+    {
+        return $this->landfill;
+    }
+
+    public function setLandfill(?User $landfill): self
+    {
+        $this->landfill = $landfill;
 
         return $this;
     }
