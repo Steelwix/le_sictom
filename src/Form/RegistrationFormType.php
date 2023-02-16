@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -48,7 +50,13 @@ class RegistrationFormType extends AbstractType
             ->add('isLandfill', CheckboxType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'L\'utilisateur sera une déchetterie  '
+                'label' => 'L\'utilisateur sera une déchetterie  ',
+                'data' => true
+            ])
+            ->add('isAdmin', CheckboxType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'L\'utilisateur sera administrateur  '
             ]);
     }
 

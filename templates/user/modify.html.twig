@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un compte
+{% block title %}Modifier l'utilisateur
 {% endblock %}
 
 {% block body %}
@@ -8,7 +8,7 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<br><br><h3>S'inscrire</h3>
+				<br><br><h3>Modifier l'utilisateur</h3>
 			</div>
 			<div class="card col-md-10 col-8 bg-dark mx-auto text-center login-card"><br>
 				{{ form_start(registrationForm) }}<br>
@@ -19,9 +19,9 @@
 				{{form_row(registrationForm.isLandfill)}}<br>
 				{{form_row(registrationForm.isAdmin)}}<br>
 
-				<button type="submit" class="btn btn-primary btn-lg">Créer le compte</button><br>
+				<button type="submit" class="btn btn-primary btn-lg">Modifier</button><br>
 				{{ form_end(registrationForm) }}<br>
-				<a class="d-lg-none" href="">Déjà un compte?</a><br><br>
+
 			</div>
 		</div>
 	</section>
