@@ -17,8 +17,7 @@ class UserController extends AbstractController
     #[Route('/user', name: 'app_user')]
     public function manageUser(UserRepository $userRepository): Response
     {
-        $users = $userRepository->findAll();
-        return $this->render('user/manage.html.twig', ['users' => $users]);
+        return $this->render('user/manage.html.twig', ['users' => $userRepository->findBy([], ['username' => 'asc'])]);
     }
     #[Route('/user/modify/{id}', name: 'app_modify_user')]
     public function modifyUser(User $user, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
