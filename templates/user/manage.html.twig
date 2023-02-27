@@ -6,40 +6,79 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<h1>
-					<i>UTILISATEURS</i>
+					<i>GESTION DES COMPTES</i>
 				</h1>
 			</div>
 			<div class="row">
+				<div class="col-12">
+					<h2>DECHETTERIES</h2>
+				</div>
 				{% for user in users %}
-					{% if "ROLE_ADMIN" in user.roles %}
-						<div class="card bg-danger col-2 mh-500 d-flex align-items-stretch">
+					{% if user.isLandfill == true %}
+						{% if "ROLE_ADMIN" in user.roles %}
+							<div class="card bg-danger col-2 mh-500 d-flex align-items-stretch">
 
-							<img class="card-img-top rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Card image cap">
-						{% else %}
-							<div class="card bg-dark col-2 mh-500 d-flex align-items-stretch">
+								<img class="card-img-top rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Card image cap">
+							{% else %}
+								<div class="card bg-dark col-2 mh-500 d-flex align-items-stretch">
 
-								<img class="card-img-top rounded" src="https://www.agglo-colmar.fr/sites/default/files/2020-12/dechetterie-ladhof.jpg" alt="Card image cap">
-							{% endif %}
-							<div class="card-title text-center">
-								<p>
-									<strong>{{user.username}}</strong>
-								</p>
+									<img class="card-img-top rounded" src="https://www.agglo-colmar.fr/sites/default/files/2020-12/dechetterie-ladhof.jpg" alt="Card image cap">
+								{% endif %}
+								<div class="card-title text-center">
+									<p>
+										<strong>{{user.username}}</strong>
+									</p>
 
-								<div class="card-content text-center"></div>
-								<a type="button" class="btn btn-dark" href="{{ path('app_modify_user', {id: user.id})}}">
-									<i class="bi bi-pen-fill">
-										Modifier</i>
-								</a>
-								<a type="button" class="btn btn-dark" href="{{ path('app_delete_user', {id: user.id})}}">
-									<i class="bi bi-trash-fill">Supprimer</i>
+									<div class="card-content text-center"></div>
+									<a type="button" class="btn btn-dark" href="{{ path('app_modify_user', {id: user.id})}}">
+										<i class="bi bi-pen-fill">
+											Modifier</i>
+									</a>
+									<a type="button" class="btn btn-dark" href="{{ path('app_delete_user', {id: user.id})}}">
+										<i class="bi bi-trash-fill">Supprimer</i>
 
-								</a>
+									</a>
+								</div>
+
 							</div>
 
-						</div>
-
-
+						{% endif %}
 					{% endfor %}
+					<div class="col-12">
+						<h2>UTILISATEURS</h2>
+					</div>
+					{% for user in users %}
+						{% if user.isLandfill == false %}
+							{% if "ROLE_ADMIN" in user.roles %}
+								<div class="card bg-danger col-2 mh-500 d-flex align-items-stretch">
+
+									<img class="card-img-top rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Card image cap">
+								{% else %}
+									<div class="card bg-dark col-2 mh-500 d-flex align-items-stretch">
+
+										<img class="card-img-top rounded" src="https://www.agglo-colmar.fr/sites/default/files/2020-12/dechetterie-ladhof.jpg" alt="Card image cap">
+									{% endif %}
+									<div class="card-title text-center">
+										<p>
+											<strong>{{user.username}}</strong>
+										</p>
+
+										<div class="card-content text-center"></div>
+										<a type="button" class="btn btn-dark" href="{{ path('app_modify_user', {id: user.id})}}">
+											<i class="bi bi-pen-fill">
+												Modifier</i>
+										</a>
+										<a type="button" class="btn btn-dark" href="{{ path('app_delete_user', {id: user.id})}}">
+											<i class="bi bi-trash-fill">Supprimer</i>
+
+										</a>
+									</div>
+
+								</div>
+
+							{% endif %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 		</div>
